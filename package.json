@@ -24,6 +24,7 @@
     "@ngxs/logger-plugin": "^3.6.2",
     "@ngxs/store": "^3.6.2",
     "angular-l10n": "^10.0.2",
+    "bootstrap": "^4.5.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
