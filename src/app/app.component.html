@@ -1,11 +1,29 @@
-<h1>{{ 'title' | translate:locale.language }}</h1>
+<h1 class="mat-display-2">{{ 'title' | translate:locale.language }}</h1>
 
-<p>Value: {{ value$ | async }}</p>
+<mat-card>
+  <mat-card-header>
+    <p>Test value increment</p>
+  </mat-card-header>
+  <mat-card-content>
+    Value: {{ value$ | async }}
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)='add()'>Add 1</button>
+  </mat-card-actions>
+</mat-card>
 
-<button (click)='add()'>Add 1</button>
+<section>
+  <p class="mat-display-1">Text: {{ text$ | async }}</p>
+  <button mat-raised-button color="accent" (click)='changeText()'>Change Text</button>
+</section>
 
-<br>
-
-<p>Text: {{ text$ | async }}</p>
-
-<button (click)='changeText()'>Change Text</button>
+<section>
+  <mat-form-field appearance="standard">
+    <label for="postcode">Post code</label>
+    <input
+      id="postcode"
+      type="text"
+      matInput
+    />
+  </mat-form-field>
+</section>
