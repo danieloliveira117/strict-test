@@ -1,11 +1,23 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { AppState } from './state/app.state';
+import { NgxsModule } from '@ngxs/store';
+import { L10nTranslationModule, L10nIntlModule, L10nLoader } from 'angular-l10n';
+import { l10nTestConfig } from './shared/localization/localization.config';
 
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        NgxsModule.forRoot([
+          AppState
+        ]),
+        L10nTranslationModule.forRoot(l10nTestConfig),
+        L10nIntlModule,
         RouterTestingModule
       ],
       declarations: [
@@ -14,22 +26,15 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
+  beforeEach(async () => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+
+    const loader: L10nLoader = TestBed.inject(L10nLoader);
+    await loader.init();
+  });
+
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'strict-test'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('strict-test');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('strict-test app is running!');
+    expect(component).toBeTruthy();
   });
 });

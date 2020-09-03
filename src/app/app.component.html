@@ -1,1 +1,11 @@
 <h1>{{ 'title' | translate:locale.language }}</h1>
+
+<p>Value: {{ value$ | async }}</p>
+
+<button (click)='add()'>Add 1</button>
+
+<br>
+
+<p>Text: {{ text$ | async }}</p>
+
+<button (click)='changeText()'>Change Text</button>
